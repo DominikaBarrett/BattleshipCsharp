@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/contentModel.xml
+/modules.xml
+/projectSettingsUpdater.xml
+/.idea.BattleshipGame.iml
+# Datasource local storage ignored files
+/../../../../../../../../../../../../../:\Users\Kuba\Desktop\CodeCool\OOP C#\Unit 2\Battleship\battleship-oop-csharp-lewandowskijakub\BattleshipGame\.idea\.idea.BattleshipGame\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
