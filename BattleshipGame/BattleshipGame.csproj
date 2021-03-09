@@ -39,16 +39,16 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Battleship.cs" />
-        <Compile Include="Board.cs" />
-        <Compile Include="BoardFactory.cs" />
-        <Compile Include="Display.cs" />
-        <Compile Include="Game.cs" />
-        <Compile Include="Input.cs" />
-        <Compile Include="Player.cs" />
+        <Compile Include="Board\Board.cs" />
+        <Compile Include="Board\BoardFactory.cs" />
+        <Compile Include="Board\Square.cs" />
+        <Compile Include="Game\Game.cs" />
+        <Compile Include="Game\Player.cs" />
+        <Compile Include="Game\Ship.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Ship.cs" />
-        <Compile Include="Square.cs" />
+        <Compile Include="GetShow\Display.cs" />
+        <Compile Include="GetShow\Input.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
