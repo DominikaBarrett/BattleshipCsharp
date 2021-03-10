@@ -6,7 +6,8 @@ namespace BattleshipGame
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World");
+            Battleship currentBatt = new Battleship();
+            currentBatt.Start();
         }
     }
 }
