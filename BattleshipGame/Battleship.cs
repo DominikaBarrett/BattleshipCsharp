@@ -1,39 +1,29 @@
 ﻿using static System.Console;
 using System;
+using BattleshipGame.GetShow;
 
 namespace BattleshipGame
 {
     public class Battleship
     {
-        private string Display;
+        private Display Display;
         private string Input;
         private int HighScore;
 
-        public void Start()
+        public Battleship()
         {
+            Display display = new Display();
+            this.Display = display;
+        }
+
+        public void Start()
+        {   
             RunMainMenu();
         }
 
         private void RunMainMenu()
         {
-            ForegroundColor = ConsoleColor.Red;
-            WriteLine("Battleship is starting...");
-            string prompt = @" 
-
-▀█████████▄     ▄████████     ███         ███      ▄█          ▄████████    ▄████████    ▄█    █▄     ▄█     ▄███████▄ 
-  ███    ███   ███    ███ ▀█████████▄ ▀█████████▄ ███         ███    ███   ███    ███   ███    ███   ███    ███    ███ 
-  ███    ███   ███    ███    ▀███▀▀██    ▀███▀▀██ ███         ███    █▀    ███    █▀    ███    ███   ███▌   ███    ███ 
- ▄███▄▄▄██▀    ███    ███     ███   ▀     ███   ▀ ███        ▄███▄▄▄       ███         ▄███▄▄▄▄███▄▄ ███▌   ███    ███ 
-▀▀███▀▀▀██▄  ▀███████████     ███         ███     ███       ▀▀███▀▀▀     ▀███████████ ▀▀███▀▀▀▀███▀  ███▌ ▀█████████▀  
-  ███    ██▄   ███    ███     ███         ███     ███         ███    █▄           ███   ███    ███   ███    ███        
-  ███    ███   ███    ███     ███         ███     ███▌    ▄   ███    ███    ▄█    ███   ███    ███   ███    ███        
-▄█████████▀    ███    █▀     ▄████▀      ▄████▀   █████▄▄██   ██████████  ▄████████▀    ███    █▀    █▀    ▄████▀      
-                                                  ▀                                                                    
-   
-                                                                           
-";
-            ResetColor();
-            
+            var prompt = Display.MainMenu();
             string[] options = {"Play", "About", "Exit"};
             GameMenu mainGameMenu = new GameMenu(prompt, options);
             int selectedIndex = mainGameMenu.Run();
@@ -54,25 +44,16 @@ namespace BattleshipGame
         }
 
         
-
             private void ExitGame()
             {
-                WriteLine("\nPress any key to exit...");
+                Display.Exit();
                 ReadKey(true);
                 Environment.Exit(0);
             }
 
             private void DisplayAboutInfo()
             {
-                Clear();
-                WriteLine(@"
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
-totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
- Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui 
-ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, 
-consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-");
-                WriteLine("Press any key to return to main menu");
+                Display.InfoAbout();
                 ReadKey(true);
                 RunMainMenu();
 
@@ -81,8 +62,7 @@ consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut 
             private void RunFirstChoice()
             
             {
-                Console.WriteLine("Wybor tablicy?");
-                
+                Display.RunProgram();
                 ReadKey(true);
                 ExitGame();
                 
