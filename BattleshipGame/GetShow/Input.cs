@@ -68,6 +68,7 @@ namespace BattleshipGame.GetShow
 
         public bool GetShipPosition()
         {
+            // return true - horizontal; false - vertical position
             while (true)
             {
                 WriteLine("Enter position of the ship. (H)orizontal or (V)ertical:");
