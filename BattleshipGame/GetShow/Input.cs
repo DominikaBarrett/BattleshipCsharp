@@ -15,6 +15,7 @@ namespace BattleshipGame.GetShow
         {
             int x = -1;
             int y = -1;
+            
             do
             {
                 WriteLine("Enter coordinates (e.q. A1)");
