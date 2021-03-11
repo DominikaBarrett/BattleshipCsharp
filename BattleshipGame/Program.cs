@@ -1,4 +1,5 @@
 ﻿using System;
+using BattleshipGame.Game;
 
 namespace BattleshipGame
 {

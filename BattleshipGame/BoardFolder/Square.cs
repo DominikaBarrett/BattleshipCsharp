@@ -1,17 +1,27 @@
-﻿using System;
-using System.ComponentModel;
-
-namespace BattleshipGame.Board
+﻿namespace BattleshipGame.BoardFolder
 {
     public class Square
     {
         private (int i, int j) Position { get; set; }
         private SquareStatus squareStatus;
 
-        public Square(int i, int j)
+        // public Square(int i, int j)
+        // {
+        //     this.Position = (i, j);
+        //     squareStatus = SquareStatus.EMPTY;
+        // }
+        
+        public Square(int i, int j, bool isShip = false)
         {
             this.Position = (i, j);
-            squareStatus = SquareStatus.EMPTY;
+            if (isShip)
+            {
+                squareStatus = SquareStatus.SHIP;
+            }
+            else
+            {
+                squareStatus = SquareStatus.EMPTY;
+            }
         }
 
         public char GetCharacter()

@@ -1,5 +1,6 @@
 ﻿using static System.Console;
 using System;
+using BattleshipGame.Game;
 using BattleshipGame.GetShow;
 
 namespace BattleshipGame
@@ -64,10 +65,10 @@ namespace BattleshipGame
             {
                 Display.RunProgram();
                 Display.ShowBoard();
+                Ship newShip = new Ship(4);
+                newShip.oneSquareForShip(6, 7);
                 ReadKey(true);
                 ExitGame();
-                
-
             }
         
     }
