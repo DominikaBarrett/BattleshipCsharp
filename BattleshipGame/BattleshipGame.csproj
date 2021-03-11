@@ -39,9 +39,9 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Battleship.cs" />
-        <Compile Include="Board\Board.cs" />
-        <Compile Include="Board\BoardFactory.cs" />
-        <Compile Include="Board\Square.cs" />
+        <Compile Include="BoardFolder\Board.cs" />
+        <Compile Include="BoardFolder\BoardFactory.cs" />
+        <Compile Include="BoardFolder\Square.cs" />
         <Compile Include="GameMenu.cs" />
         <Compile Include="Game\Game.cs" />
         <Compile Include="Game\Player.cs" />

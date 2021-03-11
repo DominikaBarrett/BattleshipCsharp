@@ -51,5 +51,20 @@ namespace BattleshipGame.GetShow
         {
             WriteLine("Wybor tablicy?");
         }
+
+        
+        public void ShowBoard()
+        {
+            BoardFolder.Board board = new BoardFolder.Board(10);
+            var seeBoard = board.GetBoard();
+            for (int i = 0; i <= seeBoard.GetUpperBound(0); i++)
+            {
+                for (int j = 0; j <= seeBoard.GetUpperBound(1); j++)
+                {
+                    Write(seeBoard[i,j].GetCharacter());
+                }
+                WriteLine();
+            }
+        }
     }
 }

@@ -1,56 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Diagnostics;
+using BattleshipGame.BoardFolder;
 using static System.Console;
 
 namespace BattleshipGame.Game
 {
     public class Ship
     {
-        enum ShipType { Carrier = 1, Battleship, Cruiser , Submarine , Destroyer};
-        public string Name;
-        public int Lenght;
-        public bool Hit;
-        public bool Sunk;
-        // List<Square>;
+        enum ShipType
+        {
+            Carrier = 5, 
+            Battleship = 4, 
+            Cruiser = 3,
+            Submarine = 2,
+            Destroyer = 1
+        };
+
+        private string Name;
+        private int type;
+        private bool Hit;
+        private bool Sunk;
+        private List<Square> fields;
         
-        public Ship()
+        public Ship(int typeOfShip)
         {
-            
-            
-        }
-     
-        public Ship(string name, int lenght)
-        {
-            this.Name = name;
-            this.Lenght = lenght;
-            
-        }
-        public Ship(string name, int lenght,bool hit)
-        {
-            this.Name = name;
-            this.Lenght = lenght;
-            this.Hit = hit;
-
+            this.type = typeOfShip;
+            fields = new List<Square>(typeOfShip);
         }
 
-       
-
-    
-   
-
-        // public static void SelectShip()
-        // {
-        //     List<Ship> shipList;
-        //     shipList = new List<Ship>();
-        //     shipList.Add(new Ship("Carrier", 5));
-        //     shipList.Add(new Ship("Battleship", 4));
-        //     shipList.Add(new Ship("Cruiser", 3));
-        //     shipList.Add(new Ship("Submarine", 3));
-        //     shipList.Add(new Ship("Destroyer", 2));
-        // }
-
+        public void oneSquareForShip(int x, int y)
+        {
+            var oneField = new Square(x, y, true);
+            fields.Add(oneField);
+        }
 
     }
 

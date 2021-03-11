@@ -1,5 +1,4 @@
 ﻿using System;
-using static System.Console;
 using BattleshipGame.Game;
 
 namespace BattleshipGame
@@ -10,8 +9,6 @@ namespace BattleshipGame
         {
             Battleship currentBatt = new Battleship();
             currentBatt.Start();
-            Ship ship = new Ship();
-            
         }
     }
 }
