@@ -63,6 +63,7 @@ namespace BattleshipGame
             
             {
                 Display.RunProgram();
+                Display.ShowBoard();
                 ReadKey(true);
                 ExitGame();
                 
