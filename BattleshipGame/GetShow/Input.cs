@@ -65,5 +65,27 @@ namespace BattleshipGame.GetShow
 
             return nickname;
         }
+
+        public bool GetShipPosition()
+        {
+            while (true)
+            {
+                WriteLine("Enter position of the ship. (H)orizontal or (V)ertical:");
+
+                string userInput = ReadLine()?.ToUpper();
+
+                if (userInput == "H")
+                {
+                    return true;
+                }
+
+                if (userInput == "V")
+                {
+                    return false;
+                }
+                WriteLine("Enter only H for horizontal position or V for vertical position!");
+                
+            }
+        }
     }
 }
