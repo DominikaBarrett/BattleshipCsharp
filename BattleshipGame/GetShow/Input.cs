@@ -43,5 +43,27 @@ namespace BattleshipGame.GetShow
 
             return (x, y);
         }
+
+        public string GetNickname()
+        {
+            bool ready = false;
+            string nickname;
+                
+            do
+            {
+                nickname = ReadLine();
+                
+                if (nickname != null && nickname.Length > 25)
+                {
+                    WriteLine("Your nickname length should less than 25!");
+                }
+                else
+                {
+                    ready = true;
+                }
+            } while (ready != true);
+
+            return nickname;
+        }
     }
 }
