@@ -65,7 +65,7 @@ namespace BattleshipGame
             {
                 Display.RunProgram();
                 Display.ShowBoard();
-                Ship newShip = new Ship(4);
+                Ship newShip = new Ship(4, "Player1");
                 newShip.oneSquareForShip(6, 7);
                 ReadKey(true);
                 ExitGame();
