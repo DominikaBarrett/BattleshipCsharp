@@ -17,15 +17,17 @@ namespace BattleshipGame.Game
         };
 
         private string Name;
+        private string Owner;
         private int type;
         private bool Hit;
         private bool Sunk;
         private List<Square> fields;
         
-        public Ship(int typeOfShip)
+        public Ship(int typeOfShip, string owner)
         {
             this.type = typeOfShip;
             fields = new List<Square>(typeOfShip);
+            this.Owner = owner;
         }
 
         public void oneSquareForShip(int x, int y)

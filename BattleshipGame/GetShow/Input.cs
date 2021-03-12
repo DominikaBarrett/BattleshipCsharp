@@ -89,5 +89,12 @@ namespace BattleshipGame.GetShow
                 
             }
         }
+
+        public int BoardSize()
+        {
+            string userInput = ReadLine();
+            var size = Int32.Parse(userInput ?? throw new InvalidOperationException());
+            return size;
+        }
     }
 }
