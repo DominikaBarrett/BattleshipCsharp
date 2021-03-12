@@ -61,12 +61,10 @@ namespace BattleshipGame
             }
 
             private void RunFirstChoice()
-            
+
             {
-                Display.RunProgram();
-                Display.ShowBoard();
-                Ship newShip = new Ship(4, "Player1");
-                newShip.oneSquareForShip(6, 7);
+                Game.Game newRound = new Game.Game();
+                newRound.Round();
                 ReadKey(true);
                 ExitGame();
             }

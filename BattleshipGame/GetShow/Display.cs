@@ -1,4 +1,5 @@
 ﻿using System;
+using BattleshipGame.BoardFolder;
 using static System.Console;
 
 namespace BattleshipGame.GetShow
@@ -47,16 +48,21 @@ namespace BattleshipGame.GetShow
             WriteLine("Press any key to return to main menu");   
         }
 
-        public void RunProgram()
+        public void ProvideBoardSize()
         {
-            WriteLine("Wybor tablicy?");
+            WriteLine("Please, provide size of board below (10 - 30)");
         }
 
         
-        public void ShowBoard()
+        public void ProvideNickName()
         {
-            BoardFolder.Board board = new BoardFolder.Board(10);
-            var seeBoard = board.GetBoard();
+            WriteLine("Please, provide name for player");
+            
+        }
+
+        
+        public void ShowBoard(Square[,] seeBoard)
+        {
             for (int i = 0; i <= seeBoard.GetUpperBound(0); i++)
             {
                 for (int j = 0; j <= seeBoard.GetUpperBound(1); j++)

@@ -7,11 +7,12 @@ namespace BattleshipGame.Game
 {
     public class Player
     {
-        private string nameOfPlayer; 
-        private List<Ship> listOfShips;
+        private List<Ship> listOfShips = new List<Ship>();
         public bool IsAlive { get; private set; }
+        public string nameOfPlayer { get; set; }
+        
 
-        public Player(string name)
+        public void SetPlayerName(string name)
         {
             nameOfPlayer = name;
         }
@@ -41,7 +42,7 @@ namespace BattleshipGame.Game
         }
         
         
-        private bool CheckIfIsAlive()
+        public bool CheckIfIsAlive()
         {
             IsAlive = listOfShips.Any(); // IsAlive is True if there is any in listOfShips, and false when it's empty
             return IsAlive;
