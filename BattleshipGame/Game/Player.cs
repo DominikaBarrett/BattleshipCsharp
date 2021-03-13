@@ -33,19 +33,6 @@ namespace BattleshipGame.Game
             // PLACE FOR CALLING FUNCTIONS FROM BoardFactory TO PLACE SQUARE OF SHIPS IN RANDOM OR MANUAL WAY
         }
 
-
-        public void makeShot(Square[,] boardWithShips, Square[,] boardToShow)
-        {
-            var inputInstance = new Input();
-            var shotCoordinates = inputInstance.GetCoordinates();
-            // PLACE FOR CHECKING IF PROVIDED COORDINATES ARE SHIPS ON BOARD, OR NO
-        }
         
-        
-        public bool CheckIfIsAlive()
-        {
-            IsAlive = listOfShips.Any(); // IsAlive is True if there is any in listOfShips, and false when it's empty
-            return IsAlive;
-        }
     }
 }

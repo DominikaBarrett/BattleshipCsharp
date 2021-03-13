@@ -18,6 +18,11 @@ namespace BattleshipGame.Game
             var boardToSee = new BoardFolder.Board(sizeOfBoard).GetBoard();  // Get board to visualise in console
             var boardToPlacement = new BoardFolder.Board(sizeOfBoard).GetBoard(); // Get board to place ships
             terminalMessages.ShowBoard(boardToSee);
+            terminalMessages.Hit();
+            terminalMessages.Sunk();
+            terminalMessages.Win();
+            terminalMessages.Lose();
+            terminalMessages.AskToPlayAgain();
             
             Player player1 = new Player();
             Player player2 = new Player();
@@ -43,7 +48,10 @@ namespace BattleshipGame.Game
                 currentPLayer = turnCounter % 2 == 0 ? player1 : player2;
                 currentPLayer.makeShot(boardToPlacement, boardToSee);
                 turnCounter += 1;
+                
             }
+            
+            terminalMessages.AskToPlayAgain();
 
         }
         
