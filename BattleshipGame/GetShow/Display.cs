@@ -63,14 +63,14 @@ namespace BattleshipGame.GetShow
         public void Message(string message)
         {
             Console.ForegroundColor = ConsoleColor.Green; 
-            Console.Write($"{message}");
+            Console.WriteLine($"{message}");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
         public void Alert(string alert)
         {
             Console.ForegroundColor = ConsoleColor.Red; 
-            Console.Write($"{alert}");
+            Console.WriteLine($"{alert}");
             Console.ForegroundColor = ConsoleColor.White;
         }
     }
