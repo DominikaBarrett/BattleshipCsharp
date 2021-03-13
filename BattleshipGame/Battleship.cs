@@ -15,11 +15,13 @@ namespace BattleshipGame
         {
             Display display = new Display();
             this.Display = display;
+          
         }
 
         public void Start()
         {   
             RunMainMenu();
+            
         }
 
         private void RunMainMenu()

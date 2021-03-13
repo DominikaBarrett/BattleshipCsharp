@@ -16,7 +16,7 @@ namespace BattleshipGame.Game
             Destroyer = 1
         };
 
-        private string Name;
+        public string Name;
         private string Owner;
         private int type;
         private bool Hit;

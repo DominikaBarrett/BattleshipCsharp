@@ -1,11 +1,11 @@
 ﻿using System;
-using BattleshipGame.BoardFolder;
 using static System.Console;
 
 namespace BattleshipGame.GetShow
 {
     public class Display
     {
+        
         public string MainMenu()
         {
             ForegroundColor = ConsoleColor.Red;
@@ -48,21 +48,16 @@ namespace BattleshipGame.GetShow
             WriteLine("Press any key to return to main menu");   
         }
 
-        public void ProvideBoardSize()
+        public void RunProgram()
         {
-            WriteLine("Please, provide size of board below (10 - 30)");
+            WriteLine("Wybor tablicy?");
         }
 
         
-        public void ProvideNickName()
+        public void ShowBoard()
         {
-            WriteLine("Please, provide name for player");
-            
-        }
-
-        
-        public void ShowBoard(Square[,] seeBoard)
-        {
+            BoardFolder.Board board = new BoardFolder.Board(10);
+            var seeBoard = board.GetBoard();
             for (int i = 0; i <= seeBoard.GetUpperBound(0); i++)
             {
                 for (int j = 0; j <= seeBoard.GetUpperBound(1); j++)
@@ -70,6 +65,100 @@ namespace BattleshipGame.GetShow
                     Write(seeBoard[i,j].GetCharacter());
                 }
                 WriteLine();
+            }
+        }
+        
+        
+        
+        public void Hit()
+        {
+            WriteLine(@"  
+           _ ._  _ , _ ._
+        (_ ' ( `  )_  .__)
+      ( (  (    )   `)  ) _)
+     (__ (_   (_ . _) _) ,__)
+         `~~`\ ' . /`~~`
+              ;   ;
+              /   \
+_____________/_ __ \_____________");
+            
+            // method lets the player to know ship was hit
+            turnCounter += 1;
+            ForegroundColor = ConsoleColor.DarkMagenta;
+            WriteLine("Boom.... Aaaaaaaaaaaaaaaaaa.........You got me!!!! ");
+            // display a Score?
+            WriteLine($"Score: {turnCounter}"); 
+        }
+        
+        
+        public void Sunk()
+        {
+            WriteLine(@"
+           ___
+          /`  _\
+          |  / 0|--.
+     -   / \_|0`/ /.`'._/)
+ - ~ -^_| /-_~ ^- ~_` - -~ _
+ -  ~  -| |   - ~ -  ~  -
+         \ \, ~   -   ~
+         \_|
+              
+");
+            // method lets the player to know ship was sunk
+            turnCounter += 1;
+            ForegroundColor = ConsoleColor.DarkRed;
+            WriteLine("Congratulation you sunk the ship!!!! ");
+            WriteLine("I hope you they can swim.....");
+            // display a Score?
+            WriteLine($"Score: {turnCounter}"); 
+        }
+        
+        
+        public void Win()
+        {
+            WriteLine(@"
+                                   .''.       
+       .''.      .        *''*    :_\/_:     . 
+      :_\/_:   _\(/_  .:.*_\/_*   : /\ :  .'.:.'.
+  .''.: /\ :   ./)\   ':'* /\ * :  '..'.  -=:o:=-
+ :_\/_:'.:::.    ' *''*    * '.\'/.' _\(/_'.':'.'
+ : /\ : :::::     *_\/_*     -= o =-  /)\    '  *
+  '..'  ':::'     * /\ *     .'/.\'.   '
+      *            *..*         :
+         *
+        *       
+
+");
+            // method lets the player to know who won
+            turnCounter += 1;
+            ForegroundColor = ConsoleColor.Green;
+            WriteLine("Congratulation You won ");
+            // display a Score?
+            WriteLine($"Score: {turnCounter}"); 
+        }
+
+        public void Lose()
+        {
+            // method lets player to know they lost
+            ForegroundColor = ConsoleColor.Red;
+            WriteLine("You lost.... ");
+            // display a Score?
+            WriteLine($"Score: {turnCounter}"); 
+        }
+
+        public void AskToPlayAgain()
+        {
+            // method that ask teh player if they want to play again
+            WriteLine("Would you like to play again? (yes/no)");
+            string playResponse = ReadLine().Trim().ToLower();
+            if (playResponse == "yes")
+            {
+                // how can I solve that problem ?
+                Round(); 
+            }
+            else
+            {
+                WriteLine("Had enough? '\n'-Ok. See you later");
             }
         }
     }
