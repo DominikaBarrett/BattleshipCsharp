@@ -13,7 +13,7 @@ namespace BattleshipGame.Game
             Display terminalMessages = new Display();  // make Display instance
             Input getInput = new Input();              // make Input instance
             
-            terminalMessages.ProvideBoardSize();
+            terminalMessages.Message("Please, provide size of board between 10 - 25");
             var sizeOfBoard = getInput.BoardSize();
             var boardToSee = new BoardFolder.Board(sizeOfBoard).GetBoard();  // Get board to visualise in console
             var boardToPlacement = new BoardFolder.Board(sizeOfBoard).GetBoard(); // Get board to place ships
@@ -27,13 +27,14 @@ namespace BattleshipGame.Game
 
             Player currentPLayer;
             var turnCounter = 0;
-
+            int playerCounter = 1;
             foreach (var player in listOfPlayers)       // setting names for players, providing ship collections
             {
-                terminalMessages.ProvideNickName();
+                terminalMessages.Message($"Please, provide name for player {playerCounter}");
                 var name = getInput.GetNickname();
                 player.SetPlayerName(name);
                 player.setShipCollection();
+                playerCounter++;
             }
 
             // loop for making shots until one of players is dead. Making moves is alternately - one move

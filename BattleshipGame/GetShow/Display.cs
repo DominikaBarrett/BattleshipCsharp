@@ -48,19 +48,6 @@ namespace BattleshipGame.GetShow
             WriteLine("Press any key to return to main menu");   
         }
 
-        public void ProvideBoardSize()
-        {
-            WriteLine("Please, provide size of board below (10 - 30)");
-        }
-
-        
-        public void ProvideNickName()
-        {
-            WriteLine("Please, provide name for player");
-            
-        }
-
-        
         public void ShowBoard(Square[,] seeBoard)
         {
             for (int i = 0; i <= seeBoard.GetUpperBound(0); i++)
@@ -71,6 +58,20 @@ namespace BattleshipGame.GetShow
                 }
                 WriteLine();
             }
+        }
+
+        public void Message(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green; 
+            Console.Write($"{message}");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public void Alert(string alert)
+        {
+            Console.ForegroundColor = ConsoleColor.Red; 
+            Console.Write($"{alert}");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

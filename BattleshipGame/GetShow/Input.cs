@@ -6,10 +6,11 @@ namespace BattleshipGame.GetShow
 {
     public class Input
     {
-        // public ConsoleKeyInfo GetKeyPressed()
-        // {
-        //     return ReadKey(true);
-        // }
+        private Display Display;
+        public Input()
+        {
+            this.Display = new Display();
+        }
 
         public (int, int) GetCoordinates()
         {
@@ -18,15 +19,15 @@ namespace BattleshipGame.GetShow
             
             do
             {
-                WriteLine("Enter coordinates (e.q. A1)");
+                Display.Message("Enter coordinates (e.q. A1)");
                 string userInput = ReadLine()?.ToUpper();
-                if (userInput != null)
+                if (userInput != null ^ userInput != "")
                 {
                     char column = userInput[0];
 
                     if (column < 65 ^ column > 90)
                     {
-                        WriteLine("First position should be letter from A to Z!");
+                        Display.Alert("First position should be letter from A to Z!");
                     }
                     else
                     {
@@ -36,7 +37,7 @@ namespace BattleshipGame.GetShow
                         }
                         else
                         {
-                            WriteLine("Second position should be number!");
+                            Display.Alert("Second position should be number!");
                         }
                     }
                 }
@@ -56,7 +57,7 @@ namespace BattleshipGame.GetShow
                 
                 if (nickname != null && nickname.Length > 25)
                 {
-                    WriteLine("Your nickname length should less than 25!");
+                    Display.Alert("Your nickname length should be less than 25!");
                 }
                 else
                 {
@@ -72,7 +73,7 @@ namespace BattleshipGame.GetShow
             // return true - horizontal; false - vertical position
             while (true)
             {
-                WriteLine("Enter position of the ship. (H)orizontal or (V)ertical:");
+               Display.Message("Enter position of the ship. (H)orizontal or (V)ertical:");
 
                 string userInput = ReadLine()?.ToUpper();
 
@@ -85,16 +86,34 @@ namespace BattleshipGame.GetShow
                 {
                     return false;
                 }
-                WriteLine("Enter only H for horizontal position or V for vertical position!");
+                Display.Alert("Enter only H for horizontal position or V for vertical position!");
                 
             }
         }
 
         public int BoardSize()
         {
-            string userInput = ReadLine();
-            var size = Int32.Parse(userInput ?? throw new InvalidOperationException());
-            return size;
+            int size;
+            while (true)
+            {
+                string userInput = ReadLine();
+                if (int.TryParse(userInput, out size))
+                {
+                    if (size < 10 ^ size > 25)
+                    {
+                        Display.Alert("Size should be between 10 and 25!");
+                    }
+                    else
+                    {
+                        return size;
+                    }
+                }
+                else
+                {
+                    Display.Alert("Enter only numbers!");
+                }
+            }
+            
         }
     }
 }
