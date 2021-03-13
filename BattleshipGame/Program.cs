@@ -9,6 +9,7 @@ namespace BattleshipGame
         {
             Battleship currentBatt = new Battleship();
             currentBatt.Start();
+          
         }
     }
 }
