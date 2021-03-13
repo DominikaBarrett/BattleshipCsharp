@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
+using BattleshipGame.Board;
 using BattleshipGame.GetShow;
 
 namespace BattleshipGame.Game
@@ -30,11 +31,17 @@ namespace BattleshipGame.Game
             int playerCounter = 1;
             foreach (var player in listOfPlayers)       // setting names for players, providing ship collections
             {
+                // ReSharper disable once HeapView.BoxingAllocation
                 terminalMessages.Message($"Please, provide name for player {playerCounter}");
                 var name = getInput.GetNickname();
                 player.SetPlayerName(name);
                 player.setShipCollection();
                 playerCounter++;
+            }
+
+            foreach (var player in listOfPlayers)
+            {
+                shipPlacement(player);
             }
 
             // loop for making shots until one of players is dead. Making moves is alternately - one move
@@ -46,6 +53,27 @@ namespace BattleshipGame.Game
                 turnCounter += 1;
             }
 
+        }
+
+        private void shipPlacement(Player player)
+        {
+            BoardFactory factory = new BoardFactory();
+            var prompt = $"{player.nameOfPlayer} choose method to place your ships:";
+            string[] option = {"Random", "Manual"};
+            
+            GameMenu optionMenu = new GameMenu(prompt, option);
+            
+            int selectedIndex = optionMenu.Run();
+             
+            switch (selectedIndex)
+            {
+                case 0:
+                    factory.RandomPlacement();
+                    break;
+                case 1:
+                    factory.ManualPlacement();
+                    break;
+            }
         }
         
     }
