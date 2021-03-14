@@ -53,7 +53,7 @@ namespace BattleshipGame.Game
 
         private void shipPlacement(Player player)
         {
-            BoardFactory factory = new BoardFactory();
+            BoardFactory factory = new BoardFactory(player);
 
             var prompt = $"{player.NameOfPlayer} choose method to place your ships:";
             string[] option = {"Random", "Manual"};
@@ -67,7 +67,7 @@ namespace BattleshipGame.Game
                     factory.RandomPlacement();
                     break;
                 case 1:
-                    factory.ManualPlacement(player);
+                    factory.ManualPlacement();
                     break;
             }
         }
