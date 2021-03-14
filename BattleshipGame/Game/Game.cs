@@ -21,7 +21,6 @@ namespace BattleshipGame.Game
 
         public void Round()
         {
-            Display.Message("Please, provide size of board between 10 - 25");
             BoardSize = Input.BoardSize();
 
             CreatePlayers(2);
@@ -30,7 +29,7 @@ namespace BattleshipGame.Game
 
             foreach (var player in ListOfPlayers)
             {
-                shipPlacement(player);
+                ShipPlacement(player);
             }
 
             Player player1 = ListOfPlayers[0];
@@ -51,7 +50,7 @@ namespace BattleshipGame.Game
         }
 
 
-        private void shipPlacement(Player player)
+        private void ShipPlacement(Player player)
         {
             BoardFactory factory = new BoardFactory(player);
 

@@ -67,35 +67,13 @@ namespace BattleshipGame.GetShow
 
             return nickname;
         }
-
-        // public bool GetShipPosition()
-        // {
-        //     // return true - horizontal; false - vertical position
-        //     while (true)
-        //     {
-        //        Display.Message("Enter position of the ship. (H)orizontal or (V)ertical:");
-        //
-        //         string userInput = ReadLine()?.ToUpper();
-        //
-        //         if (userInput == "H")
-        //         {
-        //             return true;
-        //         }
-        //
-        //         if (userInput == "V")
-        //         {
-        //             return false;
-        //         }
-        //         Display.Alert("Enter only H for horizontal position or V for vertical position!");
-        //         
-        //     }
-        // }
-
+        
         public int BoardSize()
         {
             int size;
             while (true)
             {
+                Display.Message("Please, provide size of board between 10 - 25");
                 string userInput = ReadLine();
                 if (int.TryParse(userInput, out size))
                 {
@@ -117,7 +95,9 @@ namespace BattleshipGame.GetShow
 
         public ((int x, int y), ConsoleKey) GetShipPosition((int x, int y) shipCore)
         {
-           
+            Display.Message(@"Press space bar to change ship position.
+Enter - to place ship.
+Arrows - to move ship. ");
             ConsoleKeyInfo keyInfo = ReadKey(true);
             ConsoleKey keyPressed = keyInfo.Key;
 
