@@ -72,6 +72,8 @@ namespace BattleshipGame.GetShow
             Console.ForegroundColor = ConsoleColor.Red; 
             Console.WriteLine($"{alert}");
             Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadKey();
         }
+        
     }
 }

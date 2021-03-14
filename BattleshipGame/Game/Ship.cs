@@ -18,7 +18,7 @@ namespace BattleshipGame.Game
 
         private string Name;
         private string Owner;
-        private int type;
+        public int type;
         private bool Hit;
         private bool Sunk;
         private List<Square> fields;
@@ -30,10 +30,11 @@ namespace BattleshipGame.Game
             this.Owner = owner;
         }
 
-        public void oneSquareForShip(int x, int y)
+        public Square SquareForShip(int x, int y)
         {
             var oneField = new Square(x, y, true);
             fields.Add(oneField);
+            return oneField;
         }
 
     }

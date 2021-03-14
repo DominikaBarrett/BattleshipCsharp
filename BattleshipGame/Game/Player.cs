@@ -7,7 +7,7 @@ namespace BattleshipGame.Game
 {
     public class Player
     {
-        private List<Ship> _listOfShips = new List<Ship>();
+        public List<Ship> ListOfShips = new List<Ship>();
         private bool IsAlive { get; set; }
         public readonly string NameOfPlayer;
         public Square[,]  PlayerBoard;
@@ -16,6 +16,7 @@ namespace BattleshipGame.Game
         public Player(string name, int boardSize)
         {
             NameOfPlayer = name;
+            IsAlive = true;
             PlayerBoard = new BoardFolder.Board(boardSize).GetBoard();
             SetShipCollection();
         }
@@ -28,11 +29,11 @@ namespace BattleshipGame.Game
             Ship cruiser = new Ship(3, NameOfPlayer);
             Ship submarine = new Ship(2, NameOfPlayer);
             Ship destroyer = new Ship(1, NameOfPlayer);
-            _listOfShips.Add(carrier);
-            _listOfShips.Add(battleship);
-            _listOfShips.Add(cruiser);
-            _listOfShips.Add(submarine);
-            _listOfShips.Add(destroyer);
+            ListOfShips.Add(carrier);
+            ListOfShips.Add(battleship);
+            ListOfShips.Add(cruiser);
+            ListOfShips.Add(submarine);
+            ListOfShips.Add(destroyer);
             // PLACE FOR CALLING FUNCTIONS FROM BoardFactory TO PLACE SQUARE OF SHIPS IN RANDOM OR MANUAL WAY
         }
 
@@ -47,7 +48,7 @@ namespace BattleshipGame.Game
         
         public bool CheckIfIsAlive()
         {
-            IsAlive = _listOfShips.Any(); // IsAlive is True if there is any in listOfShips, and false when it's empty
+            IsAlive = ListOfShips.Any(); // IsAlive is True if there is any in listOfShips, and false when it's empty
             return IsAlive;
         }
         

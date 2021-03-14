@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml;
-using BattleshipGame.Board;
+using BattleshipGame.BoardFolder;
 using BattleshipGame.GetShow;
 
 namespace BattleshipGame.Game
@@ -67,7 +67,7 @@ namespace BattleshipGame.Game
                     factory.RandomPlacement();
                     break;
                 case 1:
-                    factory.ManualPlacement();
+                    factory.ManualPlacement(player);
                     break;
             }
         }
