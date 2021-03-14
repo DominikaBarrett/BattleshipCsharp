@@ -8,7 +8,8 @@ namespace BattleshipGame.GetShow
     {
         public string MainMenu()
         {
-            ForegroundColor = ConsoleColor.Red;
+           
+           
             WriteLine("Battleship is starting...");
             string prompt = @" 
 
@@ -77,7 +78,7 @@ namespace BattleshipGame.GetShow
         
         
         
-        public void Hit()
+        public void Hit(int turnCounter)
         {
             WriteLine(@"  
            _ ._  _ , _ ._
@@ -98,7 +99,7 @@ _____________/_ __ \_____________");
         }
         
         
-        public void Sunk()
+        public void Sunk(int turnCounter)
         {
             WriteLine(@"
            ___
@@ -121,7 +122,7 @@ _____________/_ __ \_____________");
         }
         
         
-        public void Win()
+        public void Win(int turnCounter)
         {
             WriteLine(@"
                                    .''.       
@@ -144,7 +145,7 @@ _____________/_ __ \_____________");
             WriteLine($"Score: {turnCounter}"); 
         }
 
-        public void Lose()
+        public void Lose(int turnCounter)
         {
             // method lets player to know they lost
             ForegroundColor = ConsoleColor.Red;
@@ -155,13 +156,15 @@ _____________/_ __ \_____________");
 
         public void AskToPlayAgain()
         {
+            
             // method that ask teh player if they want to play again
             WriteLine("Would you like to play again? (yes/no)");
             string playResponse = ReadLine().Trim().ToLower();
             if (playResponse == "yes")
             {
+                var game = new Game.Game();
                 // how can I solve that problem ?
-                Round(); 
+                game.Round(); 
             }
             else
             {

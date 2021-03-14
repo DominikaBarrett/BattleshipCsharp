@@ -82,6 +82,7 @@ namespace BattleshipGame.Game
                 Player player = new Player(name, BoardSize);
                 ListOfPlayers.Add(player);
             }
+            
         }
     }
 }

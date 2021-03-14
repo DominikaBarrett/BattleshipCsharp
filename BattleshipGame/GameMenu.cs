@@ -8,6 +8,7 @@ namespace BattleshipGame
         private int SelectedIndex;
         private string[] Options;
         private string Prompt;
+        
 
         public GameMenu(string prompt, string[] options)
         {
@@ -18,6 +19,7 @@ namespace BattleshipGame
 
         private void DisplayOptions()
         {
+            ForegroundColor = ConsoleColor.Blue;
             WriteLine(Prompt);
             for (int i = 0; i < Options.Length; i++)
             {
