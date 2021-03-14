@@ -1,11 +1,11 @@
 ﻿using System;
+using BattleshipGame.BoardFolder;
 using static System.Console;
 
 namespace BattleshipGame.GetShow
 {
     public class Display
     {
-        
         public string MainMenu()
         {
             ForegroundColor = ConsoleColor.Red;
@@ -48,16 +48,8 @@ namespace BattleshipGame.GetShow
             WriteLine("Press any key to return to main menu");   
         }
 
-        public void RunProgram()
+        public void ShowBoard(Square[,] seeBoard)
         {
-            WriteLine("Wybor tablicy?");
-        }
-
-        
-        public void ShowBoard()
-        {
-            BoardFolder.Board board = new BoardFolder.Board(10);
-            var seeBoard = board.GetBoard();
             for (int i = 0; i <= seeBoard.GetUpperBound(0); i++)
             {
                 for (int j = 0; j <= seeBoard.GetUpperBound(1); j++)
@@ -67,6 +59,21 @@ namespace BattleshipGame.GetShow
                 WriteLine();
             }
         }
+
+        public void Message(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green; 
+            Console.WriteLine($"{message}");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public void Alert(string alert)
+        {
+            Console.ForegroundColor = ConsoleColor.Red; 
+            Console.WriteLine($"{alert}");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        
         
         
         

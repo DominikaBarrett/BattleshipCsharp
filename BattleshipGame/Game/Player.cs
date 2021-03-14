@@ -7,32 +7,51 @@ namespace BattleshipGame.Game
 {
     public class Player
     {
-        private List<Ship> listOfShips = new List<Ship>();
-        public bool IsAlive { get; private set; }
-        public string nameOfPlayer { get; set; }
+        public List<Ship> ListOfShips = new List<Ship>();
+        private bool IsAlive { get; set; }
+        public readonly string NameOfPlayer;
+        public Square[,]  PlayerBoard;
         
 
-        public void SetPlayerName(string name)
+        public Player(string name, int boardSize)
         {
-            nameOfPlayer = name;
+            NameOfPlayer = name;
+            IsAlive = true;
+            PlayerBoard = new BoardFolder.Board(boardSize).GetBoard();
+            SetShipCollection();
         }
+        
 
-
-        public void setShipCollection()
+        private void SetShipCollection()
         {
-            Ship carrier = new Ship(5, nameOfPlayer);
-            Ship battleship = new Ship(4, nameOfPlayer);
-            Ship cruiser = new Ship(3, nameOfPlayer);
-            Ship submarine = new Ship(2, nameOfPlayer);
-            Ship destroyer = new Ship(1, nameOfPlayer);
-            listOfShips.Add(carrier);
-            listOfShips.Add(battleship);
-            listOfShips.Add(cruiser);
-            listOfShips.Add(submarine);
-            listOfShips.Add(destroyer);
+            Ship carrier = new Ship(5, NameOfPlayer);
+            Ship battleship = new Ship(4, NameOfPlayer);
+            Ship cruiser = new Ship(3, NameOfPlayer);
+            Ship submarine = new Ship(2, NameOfPlayer);
+            Ship destroyer = new Ship(1, NameOfPlayer);
+            ListOfShips.Add(carrier);
+            ListOfShips.Add(battleship);
+            ListOfShips.Add(cruiser);
+            ListOfShips.Add(submarine);
+            ListOfShips.Add(destroyer);
             // PLACE FOR CALLING FUNCTIONS FROM BoardFactory TO PLACE SQUARE OF SHIPS IN RANDOM OR MANUAL WAY
         }
 
+
+        public void MakeShot(Square[,] boardWithShips, Square[,] boardToShow)
+        {
+            var inputInstance = new Input();
+            var shotCoordinates = inputInstance.GetCoordinates();
+            // PLACE FOR CHECKING IF PROVIDED COORDINATES ARE SHIPS ON BOARD, OR NO
+        }
+        
+        
+        public bool CheckIfIsAlive()
+        {
+            IsAlive = ListOfShips.Any(); // IsAlive is True if there is any in listOfShips, and false when it's empty
+            return IsAlive;
+        }
+        
         
     }
 }

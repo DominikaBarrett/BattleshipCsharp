@@ -23,6 +23,12 @@
                 squareStatus = SquareStatus.EMPTY;
             }
         }
+        public Square(int i, int j, SquareStatus status)
+        {
+            this.Position = (i, j);
+            squareStatus = status;
+        }
+        
 
         public char GetCharacter()
         {
@@ -36,17 +42,20 @@
                     return '_';
                 case SquareStatus.MISSED:
                     return 'M';
+                case SquareStatus.TESTING:
+                    return '#';
             }
             return '\0';
         }
 
 
-        private enum SquareStatus
+        public enum SquareStatus
         {
             EMPTY,
             SHIP,
             HIT,
-            MISSED
+            MISSED,
+            TESTING
         }
     }
 }

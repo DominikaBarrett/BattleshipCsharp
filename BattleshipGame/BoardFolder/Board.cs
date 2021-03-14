@@ -1,6 +1,4 @@
-﻿using BattleshipGame.Board;
-
-namespace BattleshipGame.BoardFolder
+﻿namespace BattleshipGame.BoardFolder
 {
     public class Board
     {
