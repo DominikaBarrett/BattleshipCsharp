@@ -35,6 +35,7 @@
             switch (squareStatus)
             {
                 case SquareStatus.HIT:
+                    
                     return 'H';
                 case SquareStatus.SHIP:
                     return 'S';

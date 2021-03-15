@@ -44,7 +44,6 @@ namespace BattleshipGame.Game
         {
             var inputInstance = new Input();
             var shotCoordinates = inputInstance.GetCoordinates();
-            var field = boardWithShips[shotCoordinates.Item1, shotCoordinates.Item2];
             // PLACE FOR CHECKING IF PROVIDED COORDINATES ARE SHIPS ON BOARD, OR NO
         }
         
