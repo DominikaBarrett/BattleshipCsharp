@@ -44,7 +44,7 @@ namespace BattleshipGame.Game
                 currentPLayer = turnCounter % 2 == 0 ? player1 : player2;
                 enemyPlayer = turnCounter % 2 == 1 ? player1 : player2;
                 Display.ShowBoard(enemyPlayer.PlayerBoard);
-                currentPLayer.MakeShot(currentPLayer.PlayerBoard, enemyPlayer.PlayerBoard);
+                currentPLayer.MakeShot(enemyPlayer.PlayerBoard, enemyPlayer.ConsoleBoard);
                 turnCounter += 1;
                 
             }
