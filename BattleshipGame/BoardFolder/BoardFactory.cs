@@ -37,7 +37,7 @@ namespace BattleshipGame.BoardFolder
                     bool isVertical = new Random().Next(0, 2) == 1;
                     var shipProposedPosition = GenerateShipPositions(shipCore, isVertical, shipLenght);
                     
-                    ready = PlaceShip(shipCore, isVertical, shipLenght, shipProposedPosition, ship);
+                    ready = PlaceShip(shipCore, isVertical, shipLenght, shipProposedPosition, ship, false);
                 } while (ready == false);
             }
         }
@@ -54,7 +54,7 @@ namespace BattleshipGame.BoardFolder
                 do
                 {
                     var shipProposedPosition = GenerateShipPositions(shipCore, isVertical, shipLenght);
-                    GenerateView(shipProposedPosition);
+                    GenerateView(shipProposedPosition, true);
 
                     ConsoleKey keyPressed;
                     (shipCore, keyPressed) = Input.GetShipPosition(shipCore);
@@ -66,16 +66,16 @@ namespace BattleshipGame.BoardFolder
 
                     if (keyPressed == ConsoleKey.Enter)
                     {
-                        ready = PlaceShip(shipCore, isVertical, shipLenght, shipProposedPosition, ship);
+                        ready = PlaceShip(shipCore, isVertical, shipLenght, shipProposedPosition, ship, true);
                     }
                 } while (ready == false);
             }
         }
 
         private bool TryToPlaceShip((int x, int y) shipCore, bool isVertical, int shipLenght,
-            List<(int, int)> shipProposedPosition)
+            List<(int, int)> shipProposedPosition, bool manual)
         {
-            if (CheckBoundaries(shipProposedPosition) & CheckSpot(shipProposedPosition))
+            if (CheckBoundaries(shipProposedPosition, manual) & CheckSpot(shipProposedPosition, manual))
             {
                 return true;
             }
@@ -103,13 +103,18 @@ namespace BattleshipGame.BoardFolder
             return shipSquares;
         }
 
-        private bool CheckBoundaries(List<(int x, int y)> shipProposedPosition)
+        private bool CheckBoundaries(List<(int x, int y)> shipProposedPosition, bool manual)
         {
             foreach (var square in shipProposedPosition)
             {
                 if (square.x > BoardSize ^ square.x < 0 ^ square.y > BoardSize ^ square.y < 0)
                 {
-                    Display.Alert("Ship should be placed over a board!");
+                    if (manual)
+                    {
+                        Display.Alert("Ship should be placed over a board!");
+                        ConsoleKeyInfo keyInfo = ReadKey(true);
+                    }
+
                     return false;
                 }
             }
@@ -117,13 +122,18 @@ namespace BattleshipGame.BoardFolder
             return true;
         }
 
-        private bool CheckSpot(List<(int x, int y)> shipProposedPosition)
+        private bool CheckSpot(List<(int x, int y)> shipProposedPosition, bool manual)
         {
             foreach (var square in shipProposedPosition)
             {
                 if (UsedSquare.Contains(square))
                 {
-                    Display.Alert("You can't place ship on another ship!");
+                    if (manual)
+                    {
+                        Display.Alert("You can't place ship on another ship!");
+                        ConsoleKeyInfo keyInfo = ReadKey(true);
+                    }
+
                     return false;
                 }
             }
@@ -131,11 +141,11 @@ namespace BattleshipGame.BoardFolder
             return true;
         }
 
-        private void GenerateView(List<(int x, int y)> shipProposedPosition)
+        private void GenerateView(List<(int x, int y)> shipProposedPosition, bool manual)
         {
             var viewBoard = PlayerBoard.Clone() as Square[,];
 
-            if (CheckBoundaries(shipProposedPosition))
+            if (CheckBoundaries(shipProposedPosition, manual))
                 foreach (var square in shipProposedPosition)
                 {
                     viewBoard[square.x, square.y] = new Square(square.x, square.y, Square.SquareStatus.TESTING);
@@ -146,9 +156,9 @@ namespace BattleshipGame.BoardFolder
         }
 
         private bool PlaceShip((int, int) shipCore, bool isVertical, int shipLenght,
-            List<(int x, int y)> shipProposedPosition, Ship ship)
+            List<(int x, int y)> shipProposedPosition, Ship ship, bool manual)
         {
-            var isAllowed = TryToPlaceShip(shipCore, isVertical, shipLenght, shipProposedPosition);
+            var isAllowed = TryToPlaceShip(shipCore, isVertical, shipLenght, shipProposedPosition, manual);
             if (isAllowed)
             {
                 foreach (var square in shipProposedPosition)
@@ -161,8 +171,12 @@ namespace BattleshipGame.BoardFolder
                 return true;
             }
 
-            Display.Alert("Place not allowed!");
-
+            if (manual)
+            {
+                Display.Alert("Place not allowed!");
+                ConsoleKeyInfo keyInfo = ReadKey(true);  
+            }
+            
             return false;
         }
     }
