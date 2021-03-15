@@ -10,7 +10,8 @@ namespace BattleshipGame.Game
         public List<Ship> ListOfShips = new List<Ship>();
         private bool IsAlive { get; set; }
         public readonly string NameOfPlayer;
-        public Square[,]  PlayerBoard;
+        public Square[,] PlayerBoard;
+        public Square[,] ConsoleBoard;
         
 
         public Player(string name, int boardSize)
@@ -18,17 +19,18 @@ namespace BattleshipGame.Game
             NameOfPlayer = name;
             IsAlive = true;
             PlayerBoard = new BoardFolder.Board(boardSize).GetBoard();
+            ConsoleBoard = new BoardFolder.Board(boardSize).GetBoard();
             SetShipCollection();
         }
         
 
         private void SetShipCollection()
         {
-            Ship carrier = new Ship(5, NameOfPlayer);
-            Ship battleship = new Ship(4, NameOfPlayer);
-            Ship cruiser = new Ship(3, NameOfPlayer);
-            Ship submarine = new Ship(2, NameOfPlayer);
-            Ship destroyer = new Ship(1, NameOfPlayer);
+            Ship carrier = new Ship(ShipType.Carrier, NameOfPlayer);
+            Ship battleship = new Ship(ShipType.Battleship, NameOfPlayer);
+            Ship cruiser = new Ship(ShipType.Cruiser, NameOfPlayer);
+            Ship submarine = new Ship(ShipType.Submarine, NameOfPlayer);
+            Ship destroyer = new Ship(ShipType.Destroyer, NameOfPlayer);
             ListOfShips.Add(carrier);
             ListOfShips.Add(battleship);
             ListOfShips.Add(cruiser);
@@ -42,6 +44,7 @@ namespace BattleshipGame.Game
         {
             var inputInstance = new Input();
             var shotCoordinates = inputInstance.GetCoordinates();
+            var field = boardWithShips[shotCoordinates.Item1, shotCoordinates.Item2];
             // PLACE FOR CHECKING IF PROVIDED COORDINATES ARE SHIPS ON BOARD, OR NO
         }
         

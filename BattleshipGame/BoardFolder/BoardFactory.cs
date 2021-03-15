@@ -27,7 +27,7 @@ namespace BattleshipGame.BoardFolder
         {
             foreach (var ship in ListOfShips)
             {
-                var shipLenght = ship.type;
+                var shipLenght = ship.GetShipLength();
                 var ready = false;
                 do
                 {
@@ -49,7 +49,7 @@ namespace BattleshipGame.BoardFolder
                 (int x, int y) shipCore = (0, 0);
                 bool isVertical = true;
                 bool ready = false;
-                var shipLenght = ship.type;
+                var shipLenght = ship.GetShipLength();
 
                 do
                 {

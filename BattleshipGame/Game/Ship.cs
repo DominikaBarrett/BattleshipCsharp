@@ -7,28 +7,26 @@ namespace BattleshipGame.Game
 {
     public class Ship
     {
-        enum ShipType
-        {
-            Carrier = 5, 
-            Battleship = 4, 
-            Cruiser = 3,
-            Submarine = 2,
-            Destroyer = 1
-        };
-
         public string Name;
         private string Owner;
-        public int type;
+        public ShipType type;
         private bool Hit;
         private bool Sunk;
         private List<Square> fields;
         
-        public Ship(int typeOfShip, string owner)
+        public Ship(ShipType typeOfShip, string owner)
         {
             this.type = typeOfShip;
-            fields = new List<Square>(typeOfShip);
+            fields = new List<Square>(GetShipLength());
             this.Owner = owner;
         }
+
+
+        public int GetShipLength()
+        {
+            return (int) this.type;
+        }
+        
 
         public Square SquareForShip(int x, int y)
         {
