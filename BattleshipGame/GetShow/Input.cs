@@ -12,11 +12,12 @@ namespace BattleshipGame.GetShow
             this.Display = new Display();
         }
 
-        public (int, int) GetCoordinates()
+        public (int, int) GetCoordinates(int boardSize)
         {
             int x = -1;
             int y = -1;
-            
+            bool ready = false;
+
             do
             {
                 Display.Message("Enter coordinates (e.q. A1)");
@@ -34,6 +35,14 @@ namespace BattleshipGame.GetShow
                         if (int.TryParse(userInput.Substring(1), out y))
                         {
                             x = column - 65;
+                            if (x > boardSize - 1 ^ y > boardSize - 1 ^ y < 0)
+                            {
+                                Display.Alert("Coordinates out of range!");
+                            }
+                            else
+                            {
+                                ready = true;
+                            }
                         }
                         else
                         {
@@ -41,7 +50,7 @@ namespace BattleshipGame.GetShow
                         }
                     }
                 }
-            } while (x == -1 ^ y == -1);
+            } while (ready != true);
 
             return (x, y);
         }

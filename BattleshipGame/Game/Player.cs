@@ -12,12 +12,14 @@ namespace BattleshipGame.Game
         private bool IsAlive { get; set; }
         public readonly string NameOfPlayer;
         public Square[,] PlayerBoard;
+        private int BoardSize;
 
 
         public Player(string name, int boardSize)
         {
             NameOfPlayer = name;
             IsAlive = true;
+            BoardSize = boardSize;
             PlayerBoard = new BoardFolder.Board(boardSize).GetBoard();
             SetShipCollection();
         }
@@ -41,7 +43,7 @@ namespace BattleshipGame.Game
         public void MakeShot()
         {
             var inputInstance = new Input();
-            var shotCoordinates = inputInstance.GetCoordinates();
+            var shotCoordinates = inputInstance.GetCoordinates(BoardSize);
             var ships = this.ListOfShips;
             foreach (var ship in ships)
             {
