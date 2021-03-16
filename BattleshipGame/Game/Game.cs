@@ -48,6 +48,7 @@ namespace BattleshipGame.Game
                 Display.ShowBoard(player1.PlayerBoard);
                 Display.Message($"\n{player2.NameOfPlayer} board below");
                 Display.ShowBoard(player2.PlayerBoard);
+                Display.Message($"{currentPLayer.NameOfPlayer} turn!");
                 enemyPlayer.MakeShot();
                 turnCounter += 1;
                 

@@ -52,7 +52,7 @@ namespace BattleshipGame.GetShow
                 }
             } while (ready != true);
 
-            return (x, y);
+            return (y - 1, x);
         }
 
         public string GetNickname()
