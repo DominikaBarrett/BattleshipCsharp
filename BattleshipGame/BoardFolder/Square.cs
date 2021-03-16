@@ -50,6 +50,7 @@
             return '\0';
         }
 
+      
 
         public (int i, int j) GetPosition()
         {

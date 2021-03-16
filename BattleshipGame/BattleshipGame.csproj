@@ -48,6 +48,7 @@
         <Compile Include="Game\Player.cs" />
         <Compile Include="Game\Ship.cs" />
         <Compile Include="Game\ShipType.cs" />
+        <Compile Include="GetShow\Alfa.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="GetShow\Display.cs" />

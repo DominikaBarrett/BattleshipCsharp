@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using BattleshipGame.BoardFolder;
 using static System.Console;
 
@@ -51,15 +52,62 @@ namespace BattleshipGame.GetShow
 
         public void ShowBoard(Square[,] seeBoard)
         {
+
+          
+            StringBuilder sb = new StringBuilder();
+            var line = string.Empty;
+            var alfa = string.Empty;
             for (int i = 0; i <= seeBoard.GetUpperBound(0); i++)
             {
                 for (int j = 0; j <= seeBoard.GetUpperBound(1); j++)
                 {
-                    Write(seeBoard[i,j].GetCharacter());
+                    if (i == 0)
+                    {
+                        if (i == 0 && j == 0)
+                        {
+                            alfa += $"   {(Alfa)j} ";
+                        }
+                        else
+                        {
+                            alfa += $"{(Alfa)j} ";
+                        }
+                       
+                        if (j == seeBoard.GetUpperBound(1))
+                        {
+                            alfa += '\n';
+                        }
+                    }
+                    
+                    if (j == 0)
+                    {
+                        var len = (i + 1).ToString().Length;
+                        if (len == 1)
+                        {
+                            line += $"{i + 1}  {seeBoard[i, j].GetCharacter().ToString()} ";
+                        }
+                        else
+                        {
+                            line += $"{i + 1} {seeBoard[i, j].GetCharacter().ToString()} ";
+                        }
+                        
+                        
+                    }
+                    else
+                    {
+                        line += $"{seeBoard[i, j].GetCharacter().ToString()} ";
+                    }
                 }
-                WriteLine();
+
+                sb.AppendLine(line);
+                line = String.Empty;
             }
+
+            sb.Insert(0, alfa);
+            // Console.Clear();
+            Write(sb);
         }
+
+      
 
         public void Message(string message)
         {
