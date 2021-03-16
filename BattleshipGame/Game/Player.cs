@@ -52,14 +52,11 @@ namespace BattleshipGame.Game
                     {
                         field.squareStatus = SquareStatus.HIT;
                         PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2] = field;
-                    }
-                    else
-                    {
-                        field.squareStatus = SquareStatus.MISSED;
-                        PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2] = field;
+                        return;
                     }
                 }
             }
+            PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2].squareStatus = SquareStatus.MISSED;
         }
         
         
