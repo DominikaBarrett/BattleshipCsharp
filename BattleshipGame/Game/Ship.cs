@@ -34,5 +34,21 @@ namespace BattleshipGame.Game
             fields.Add(oneField);
             return oneField;
         }
+
+        public void TryToSunkShip()
+        {
+            if (fields.TrueForAll(IsHit))
+            {
+                foreach (var field in fields)
+                {
+                    field.squareStatus = SquareStatus.SUNK;
+                }   
+            }
+        }
+
+        private bool IsHit(Square field)
+        {
+            return field.squareStatus == SquareStatus.HIT;
+        }
     }
 }

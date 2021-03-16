@@ -51,6 +51,7 @@ namespace BattleshipGame.Game
                     if (field.GetPosition() == shotCoordinates)
                     {
                         field.squareStatus = SquareStatus.HIT;
+                        ship.TryToSunkShip();
                         PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2] = field;
                         return;
                     }

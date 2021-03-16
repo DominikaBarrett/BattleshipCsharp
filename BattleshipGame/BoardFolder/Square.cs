@@ -44,6 +44,8 @@
                     return 'M';
                 case SquareStatus.TESTING:
                     return '#';
+                case SquareStatus.SUNK:
+                    return 'X';
             }
             return '\0';
         }

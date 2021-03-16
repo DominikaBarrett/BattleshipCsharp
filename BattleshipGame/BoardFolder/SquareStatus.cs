@@ -6,6 +6,7 @@
         SHIP,
         HIT,
         MISSED,
-        TESTING
+        TESTING,
+        SUNK
     }
 }
