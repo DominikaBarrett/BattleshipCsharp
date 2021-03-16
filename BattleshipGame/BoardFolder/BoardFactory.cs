@@ -13,14 +13,14 @@ namespace BattleshipGame.BoardFolder
         private Input Input = new Input();
         private int BoardSize;
         private List<Ship> ListOfShips;
-        private Square[,] PlayerBoard;
+        private Square[,] ManualPlacementBoard;
         private List<(int, int)> UsedSquare = new List<(int, int)>();
 
         public BoardFactory(Player player)
         {
             BoardSize = player.PlayerBoard.GetUpperBound(0);
             ListOfShips = player.ListOfShips;
-            PlayerBoard = player.PlayerBoard;
+            ManualPlacementBoard = new Board(BoardSize + 1).GetBoard();
         }
 
         public void RandomPlacement()
@@ -143,12 +143,12 @@ namespace BattleshipGame.BoardFolder
 
         private void GenerateView(List<(int x, int y)> shipProposedPosition, bool manual)
         {
-            var viewBoard = PlayerBoard.Clone() as Square[,];
+            var viewBoard = ManualPlacementBoard.Clone() as Square[,];
 
             if (CheckBoundaries(shipProposedPosition, manual))
                 foreach (var square in shipProposedPosition)
                 {
-                    viewBoard[square.x, square.y] = new Square(square.x, square.y, Square.SquareStatus.TESTING);
+                    viewBoard[square.x, square.y] = new Square(square.x, square.y, SquareStatus.TESTING);
                 }
 
             Clear();
@@ -164,7 +164,7 @@ namespace BattleshipGame.BoardFolder
                 foreach (var square in shipProposedPosition)
                 {
                     var testingSquare = ship.SquareForShip(square.x, square.y);
-                    PlayerBoard[square.x, square.y] = testingSquare;
+                    ManualPlacementBoard[square.x, square.y] = testingSquare;
                     UsedSquare.Add(square);
                 }
 

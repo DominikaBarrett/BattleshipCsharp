@@ -12,7 +12,7 @@ namespace BattleshipGame.Game
         public ShipType type;
         private bool Hit;
         private bool Sunk;
-        private List<Square> fields;
+        public List<Square> fields;
         
         public Ship(ShipType typeOfShip, string owner)
         {
@@ -34,8 +34,5 @@ namespace BattleshipGame.Game
             fields.Add(oneField);
             return oneField;
         }
-
     }
-
-   
 }

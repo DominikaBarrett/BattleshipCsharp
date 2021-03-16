@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BattleshipGame.BoardFolder;
 using BattleshipGame.GetShow;
@@ -11,15 +12,13 @@ namespace BattleshipGame.Game
         private bool IsAlive { get; set; }
         public readonly string NameOfPlayer;
         public Square[,] PlayerBoard;
-        public Square[,] ConsoleBoard;
-        
+
 
         public Player(string name, int boardSize)
         {
             NameOfPlayer = name;
             IsAlive = true;
             PlayerBoard = new BoardFolder.Board(boardSize).GetBoard();
-            ConsoleBoard = new BoardFolder.Board(boardSize).GetBoard();
             SetShipCollection();
         }
         
@@ -36,15 +35,31 @@ namespace BattleshipGame.Game
             ListOfShips.Add(cruiser);
             ListOfShips.Add(submarine);
             ListOfShips.Add(destroyer);
-            // PLACE FOR CALLING FUNCTIONS FROM BoardFactory TO PLACE SQUARE OF SHIPS IN RANDOM OR MANUAL WAY
         }
 
 
-        public void MakeShot(Square[,] boardWithShips, Square[,] boardToShow)
+        public void MakeShot()
         {
             var inputInstance = new Input();
             var shotCoordinates = inputInstance.GetCoordinates();
-            // PLACE FOR CHECKING IF PROVIDED COORDINATES ARE SHIPS ON BOARD, OR NO
+            var ships = this.ListOfShips;
+            foreach (var ship in ships)
+            {
+                var shipFields = ship.fields;
+                foreach (var field in shipFields)
+                {
+                    if (field.GetPosition() == shotCoordinates)
+                    {
+                        field.squareStatus = SquareStatus.HIT;
+                        PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2] = field;
+                    }
+                    else
+                    {
+                        field.squareStatus = SquareStatus.MISSED;
+                        PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2] = field;
+                    }
+                }
+            }
         }
         
         

@@ -42,6 +42,7 @@
         <Compile Include="BoardFolder\Board.cs" />
         <Compile Include="BoardFolder\BoardFactory.cs" />
         <Compile Include="BoardFolder\Square.cs" />
+        <Compile Include="BoardFolder\SquareStatus.cs" />
         <Compile Include="GameMenu.cs" />
         <Compile Include="Game\Game.cs" />
         <Compile Include="Game\Player.cs" />

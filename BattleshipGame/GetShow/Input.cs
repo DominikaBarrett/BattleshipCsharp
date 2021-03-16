@@ -21,7 +21,7 @@ namespace BattleshipGame.GetShow
             {
                 Display.Message("Enter coordinates (e.q. A1)");
                 string userInput = ReadLine()?.ToUpper();
-                if (userInput != null ^ userInput != "")
+                if (userInput != null & userInput != "")
                 {
                     char column = userInput[0];
 

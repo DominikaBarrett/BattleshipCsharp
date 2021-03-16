@@ -3,7 +3,7 @@
     public class Square
     {
         private (int i, int j) Position { get; set; }
-        private SquareStatus squareStatus;
+        public SquareStatus squareStatus;
 
         // public Square(int i, int j)
         // {
@@ -35,7 +35,6 @@
             switch (squareStatus)
             {
                 case SquareStatus.HIT:
-                    
                     return 'H';
                 case SquareStatus.SHIP:
                     return 'S';
@@ -50,13 +49,10 @@
         }
 
 
-        public enum SquareStatus
+        public (int i, int j) GetPosition()
         {
-            EMPTY,
-            SHIP,
-            HIT,
-            MISSED,
-            TESTING
+            return this.Position;
         }
+        
     }
 }
