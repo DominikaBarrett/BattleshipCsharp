@@ -63,10 +63,20 @@ namespace BattleshipGame.Game
         }
         
         
-        public bool CheckIfIsAlive()
+        public bool CheckIfIsAlive(List<Ship> ships)
         {
-            IsAlive = ListOfShips.Any(); // IsAlive is True if there is any in listOfShips, and false when it's empty
-            return IsAlive;
+            return !ships.TrueForAll(AllShipsSunk);
+        }
+
+
+        private bool AllShipsSunk(Ship ship)
+        {
+            foreach (var field in ship.fields)
+                {
+                    if (field.squareStatus != SquareStatus.SUNK)
+                        return false;
+                }
+            return true;
         }
         
         
