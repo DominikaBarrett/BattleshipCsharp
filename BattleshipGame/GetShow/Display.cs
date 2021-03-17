@@ -250,7 +250,7 @@ _____________/_ __ \_____________");
             WriteLine("==========================");
             WriteLine("\nPress any key to continue");
             ResetColor();
-            System.Threading.Thread.Sleep(messageTime);
+            ReadKey();
         }
 
         public void DisplayOutro()
@@ -262,7 +262,7 @@ _____________/_ __ \_____________");
             WriteLine("\n¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬");
             WriteLine("Press any key to continue");
             ResetColor();
-            System.Threading.Thread.Sleep(messageTime);
+            ReadKey();
         }
     }
 }
