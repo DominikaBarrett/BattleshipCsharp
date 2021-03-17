@@ -35,7 +35,7 @@ namespace BattleshipGame.GetShow
                         if (int.TryParse(userInput.Substring(1), out y))
                         {
                             x = column - 65;
-                            if (x > boardSize - 1 ^ y > boardSize - 1 ^ y < 0)
+                            if (x > boardSize - 1 ^ y > boardSize ^ y < 0)
                             {
                                 Display.Alert("Coordinates out of range!");
                             }

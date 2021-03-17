@@ -170,7 +170,7 @@ _____________/_ __ \_____________");
         }
         
         
-        public void Win(int turnCounter)
+        public void Win(int turnCounter, string currentPlayer)
         {
             WriteLine(@"
                                    .''.       
@@ -188,9 +188,9 @@ _____________/_ __ \_____________");
             // method lets the player to know who won
             turnCounter += 1;
             ForegroundColor = ConsoleColor.Green;
-            WriteLine("Congratulation You won ");
+            WriteLine($"Congratulation {currentPlayer}, You won!\n");
             // display a Score?
-            WriteLine($"Score: {turnCounter}"); 
+            WriteLine($"You've won in: {turnCounter/2} moves!"); 
         }
 
         public void Lose(int turnCounter)

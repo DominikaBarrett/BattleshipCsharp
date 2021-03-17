@@ -34,8 +34,8 @@ namespace BattleshipGame.Game
 
             Player player1 = ListOfPlayers[0];
             Player player2 = ListOfPlayers[1];
-            Player currentPLayer;
-            Player enemyPlayer;
+            Player currentPLayer = player1;
+            Player enemyPlayer = player2;
 
             // loop for making shots until one of players is dead. Making moves is alternately - one move
             // for player1, one move for player 2
@@ -53,6 +53,7 @@ namespace BattleshipGame.Game
                 turnCounter += 1;
                 
             }
+            Display.Win(turnCounter, currentPLayer.NameOfPlayer);
         }
 
 
