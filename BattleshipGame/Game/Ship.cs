@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BattleshipGame.BoardFolder;
+using BattleshipGame.GetShow;
 using static System.Console;
 
 namespace BattleshipGame.Game
@@ -13,7 +14,8 @@ namespace BattleshipGame.Game
         private bool Hit;
         private bool Sunk;
         public List<Square> fields;
-        
+        private Display Display = new Display();
+
         public Ship(ShipType typeOfShip, string owner)
         {
             this.type = typeOfShip;
@@ -26,7 +28,7 @@ namespace BattleshipGame.Game
         {
             return (int) this.type;
         }
-        
+
 
         public Square SquareForShip(int x, int y)
         {
@@ -42,13 +44,18 @@ namespace BattleshipGame.Game
                 foreach (var field in fields)
                 {
                     field.squareStatus = SquareStatus.SUNK;
-                }   
+                    Display.Sunk();
+                    
+                }
             }
         }
 
         private bool IsHit(Square field)
         {
             return field.squareStatus == SquareStatus.HIT;
+          
+           
         }
+        
     }
 }

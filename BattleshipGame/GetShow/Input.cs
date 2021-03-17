@@ -28,7 +28,9 @@ namespace BattleshipGame.GetShow
 
                     if (column < 65 ^ column > 90)
                     {
+                        WriteLine();
                         Display.Alert("First position should be letter from A to Z!");
+                        WriteLine();
                     }
                     else
                     {
@@ -37,7 +39,9 @@ namespace BattleshipGame.GetShow
                             x = column - 65;
                             if (x > boardSize - 1 ^ y > boardSize ^ y < 0)
                             {
+                                WriteLine();
                                 Display.Alert("Coordinates out of range!");
+                                WriteLine();
                             }
                             else
                             {
@@ -46,7 +50,9 @@ namespace BattleshipGame.GetShow
                         }
                         else
                         {
+                            WriteLine();
                             Display.Alert("Second position should be number!");
+                            WriteLine();
                         }
                     }
                 }
@@ -66,7 +72,9 @@ namespace BattleshipGame.GetShow
                 
                 if (nickname != null && nickname.Length > 25)
                 {
+                    WriteLine();
                     Display.Alert("Your nickname length should be less than 25!");
+                    
                 }
                 else
                 {
@@ -82,13 +90,17 @@ namespace BattleshipGame.GetShow
             int size;
             while (true)
             {
+                WriteLine();
                 Display.Message("Please, provide size of board between 10 - 25");
+               
                 string userInput = ReadLine();
                 if (int.TryParse(userInput, out size))
                 {
                     if (size < 10 ^ size > 25)
                     {
+                        WriteLine();
                         Display.Alert("Size should be between 10 and 25!");
+                       
                     }
                     else
                     {
@@ -97,16 +109,20 @@ namespace BattleshipGame.GetShow
                 }
                 else
                 {
+                    WriteLine();
                     Display.Alert("Enter only numbers!");
                 }
+                System.Threading.Thread.Sleep(20);
             }
         }
 
         public ((int x, int y), ConsoleKey) GetShipPosition((int x, int y) shipCore)
         {
+            WriteLine();
             Display.Message(@"Press space bar to change ship position.
 Enter - to place ship.
 Arrows - to move ship. ");
+            WriteLine();
             ConsoleKeyInfo keyInfo = ReadKey(true);
             ConsoleKey keyPressed = keyInfo.Key;
 

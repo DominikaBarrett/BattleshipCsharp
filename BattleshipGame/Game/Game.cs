@@ -1,5 +1,7 @@
 ﻿using System;
+using static System.Console;
 using System.Collections.Generic;
+using System.Data;
 using System.Xml;
 using BattleshipGame.BoardFolder;
 using BattleshipGame.GetShow;
@@ -36,31 +38,41 @@ namespace BattleshipGame.Game
             Player player2 = ListOfPlayers[1];
             Player currentPLayer = player1;
             Player enemyPlayer = player2;
+            
+            //TODO intro
+            Display.DisplayIntro();
 
             // loop for making shots until one of players is dead. Making moves is alternately - one move
             // for player1, one move for player 2
             while (player1.CheckIfIsAlive(player1.ListOfShips) & player2.CheckIfIsAlive(player2.ListOfShips))
             {
+                // Clear();
                 currentPLayer = turnCounter % 2 == 0 ? player1 : player2;
                 enemyPlayer = turnCounter % 2 == 1 ? player1 : player2;
-                Display.Message($"{currentPLayer.NameOfPlayer} plays\n");
+                // Display.Message($"{currentPLayer.NameOfPlayer} plays\n");
                 Display.Message($"{player1.NameOfPlayer} board below");
                 Display.ShowBoard(player1.PlayerBoard);
                 Display.Message($"\n{player2.NameOfPlayer} board below");
                 Display.ShowBoard(player2.PlayerBoard);
+                WriteLine();
                 Display.Message($"{currentPLayer.NameOfPlayer} turn!");
                 enemyPlayer.MakeShot();
                 turnCounter += 1;
-                
+                Clear();
             }
             Display.Win(turnCounter, currentPLayer.NameOfPlayer);
+            Display.AskToPlayAgain();
+            Display.DisplayOutro();
         }
+        //TODO outro
+
+
 
 
         private void ShipPlacement(Player player)
         {
             BoardFactory factory = new BoardFactory(player);
-
+            WriteLine();
             var prompt = $"{player.NameOfPlayer} choose method to place your ships:";
             string[] option = {"Random", "Manual"};
 
@@ -82,6 +94,7 @@ namespace BattleshipGame.Game
         {
             for (int i = 0; i < numberOfPlayers; i++)
             {
+                WriteLine();
                 // ReSharper disable once HeapView.BoxingAllocation
                 Display.Message($"Please, provide name for player {i + 1}");
                 var name = Input.GetNickname();

@@ -111,6 +111,7 @@ namespace BattleshipGame.BoardFolder
                 {
                     if (manual)
                     {
+                        WriteLine();
                         Display.Alert("Ship should be placed over a board!");
                         ConsoleKeyInfo keyInfo = ReadKey(true);
                     }
@@ -130,6 +131,7 @@ namespace BattleshipGame.BoardFolder
                 {
                     if (manual)
                     {
+                        WriteLine();
                         Display.Alert("You can't place ship on another ship!");
                         ConsoleKeyInfo keyInfo = ReadKey(true);
                     }
@@ -173,6 +175,7 @@ namespace BattleshipGame.BoardFolder
 
             if (manual)
             {
+                WriteLine();
                 Display.Alert("Place not allowed!");
                 ConsoleKeyInfo keyInfo = ReadKey(true);  
             }

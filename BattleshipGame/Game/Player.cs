@@ -13,6 +13,8 @@ namespace BattleshipGame.Game
         public readonly string NameOfPlayer;
         public Square[,] PlayerBoard;
         private int BoardSize;
+        private Display Display = new Display();
+        
 
 
         public Player(string name, int boardSize)
@@ -55,11 +57,16 @@ namespace BattleshipGame.Game
                         field.squareStatus = SquareStatus.HIT;
                         ship.TryToSunkShip();
                         PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2] = field;
+                        Display.Hit();
                         return;
                     }
+                
                 }
             }
             PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2].squareStatus = SquareStatus.MISSED;
+            Display.Miss();
+            // System.Threading.Thread.Sleep(1000);
+            
         }
         
         
