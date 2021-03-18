@@ -43,24 +43,32 @@ namespace BattleshipGame.Game
         {
             var shotCoordinates = GetPlayerCoordinates();
             var ships = this.ListOfShips;
-            foreach (var ship in ships)
+            if (PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2].squareStatus == SquareStatus.EMPTY)
             {
-                var shipFields = ship.fields;
-                foreach (var field in shipFields)
+                foreach (var ship in ships)
                 {
-                    if (field.GetPosition() == shotCoordinates)
+                    var shipFields = ship.fields;
+                    foreach (var field in shipFields)
                     {
-                        field.squareStatus = SquareStatus.HIT;
-                        ship.TryToSunkShip();
-                        PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2] = field;
-                        Display.Hit();
-                        return;
+                        if (field.GetPosition() == shotCoordinates)
+                        {
+                            field.squareStatus = SquareStatus.HIT;
+                            ship.TryToSunkShip();
+                            PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2] = field;
+                            Display.Hit();
+                            return;
+                        }
                     }
                 }
+
+                PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2].squareStatus = SquareStatus.MISSED;
+                Display.Miss();
+            }
+            else
+            {
+                Display.Alert("You've used this coordinates before!");
             }
 
-            PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2].squareStatus = SquareStatus.MISSED;
-            Display.Miss();
         }
 
         protected abstract (int, int) GetPlayerCoordinates();
