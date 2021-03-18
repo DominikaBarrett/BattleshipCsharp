@@ -11,7 +11,7 @@ namespace BattleshipGame.Game
         public string NameOfPlayer;
         public Square[,] PlayerBoard;
         protected int BoardSize;
-        protected Display Display = new Display();
+        private Display Display = new Display();
         protected Input Input = new Input();
 
 
@@ -24,7 +24,7 @@ namespace BattleshipGame.Game
             SetShipCollection();
         }
 
-        protected void SetShipCollection()
+        private void SetShipCollection()
         {
             Ship carrier = new Ship(ShipType.Carrier, NameOfPlayer);
             Ship battleship = new Ship(ShipType.Battleship, NameOfPlayer);
