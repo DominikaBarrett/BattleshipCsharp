@@ -29,11 +29,6 @@ namespace BattleshipGame.Game
 
             var turnCounter = 0;
 
-            foreach (var player in ListOfPlayers)
-            {
-                ShipPlacement(player);
-            }
-
             Player player1 = ListOfPlayers[0];
             Player player2 = ListOfPlayers[1];
             Player currentPLayer = player1;
@@ -76,9 +71,7 @@ namespace BattleshipGame.Game
             var prompt = $"{player.NameOfPlayer} choose method to place your ships:";
             string[] option = {"Random", "Manual"};
 
-            GameMenu optionMenu = new GameMenu(prompt, option);
-            int selectedIndex = optionMenu.Run();
-
+            var selectedIndex = Input.CreateMenu(prompt, option);
             switch (selectedIndex)
             {
                 case 0:
@@ -98,8 +91,26 @@ namespace BattleshipGame.Game
                 // ReSharper disable once HeapView.BoxingAllocation
                 Display.Message($"Please, provide name for player {i + 1}");
                 var name = Input.GetNickname();
-                Player player = new Player(name, BoardSize);
-                ListOfPlayers.Add(player);
+
+                var prompt = $"Choose type of player {name}";
+                string[] option = {"Human", "Computer easy"};
+                var index = Input.CreateMenu(prompt, option);
+                
+                switch (index)
+                {
+                    case 0:
+                        Human human = new Human();
+                        human.CreatePlayer(name, BoardSize);
+                        ShipPlacement(human);
+                        ListOfPlayers.Add(human);
+                        break;
+                    case 1:
+                        ComputerEasy computerEasy = new ComputerEasy();
+                        computerEasy.CreatePlayer(name, BoardSize);
+                        new BoardFactory(computerEasy).RandomPlacement();
+                        ListOfPlayers.Add(computerEasy);
+                        break;
+                }
             }
             
         }

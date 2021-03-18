@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using BattleshipGame.BoardFolder;
 using BattleshipGame.GetShow;
 
 namespace BattleshipGame.Game
 {
-    public class Player
+    public abstract class Player
     {
         public List<Ship> ListOfShips = new List<Ship>();
         private bool IsAlive { get; set; }
-        public readonly string NameOfPlayer;
+        public string NameOfPlayer;
         public Square[,] PlayerBoard;
-        private int BoardSize;
-        private Display Display = new Display();
-        
+        protected int BoardSize;
+        protected Display Display = new Display();
+        protected Input Input = new Input();
 
 
-        public Player(string name, int boardSize)
+        public void CreatePlayer(string name, int boardSize)
         {
             NameOfPlayer = name;
             IsAlive = true;
@@ -25,9 +23,8 @@ namespace BattleshipGame.Game
             PlayerBoard = new BoardFolder.Board(boardSize).GetBoard();
             SetShipCollection();
         }
-        
 
-        private void SetShipCollection()
+        protected void SetShipCollection()
         {
             Ship carrier = new Ship(ShipType.Carrier, NameOfPlayer);
             Ship battleship = new Ship(ShipType.Battleship, NameOfPlayer);
@@ -44,8 +41,7 @@ namespace BattleshipGame.Game
 
         public void MakeShot()
         {
-            var inputInstance = new Input();
-            var shotCoordinates = inputInstance.GetCoordinates(BoardSize);
+            var shotCoordinates = GetPlayerCoordinates();
             var ships = this.ListOfShips;
             foreach (var ship in ships)
             {
@@ -60,16 +56,16 @@ namespace BattleshipGame.Game
                         Display.Hit();
                         return;
                     }
-                
                 }
             }
+
             PlayerBoard[shotCoordinates.Item1, shotCoordinates.Item2].squareStatus = SquareStatus.MISSED;
             Display.Miss();
-            // System.Threading.Thread.Sleep(1000);
-            
         }
-        
-        
+
+        protected abstract (int, int) GetPlayerCoordinates();
+
+
         public bool CheckIfIsAlive(List<Ship> ships)
         {
             return !ships.TrueForAll(AllShipsSunk);
@@ -79,13 +75,12 @@ namespace BattleshipGame.Game
         private bool AllShipsSunk(Ship ship)
         {
             foreach (var field in ship.fields)
-                {
-                    if (field.squareStatus != SquareStatus.SUNK)
-                        return false;
-                }
+            {
+                if (field.squareStatus != SquareStatus.SUNK)
+                    return false;
+            }
+
             return true;
         }
-        
-        
     }
 }

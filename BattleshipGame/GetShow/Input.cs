@@ -148,5 +148,12 @@ Arrows - to move ship. ");
 
             return (shipCore, keyPressed);
         }
+
+        public int CreateMenu(string prompt, string[] option)
+        {
+            GameMenu optionMenu = new GameMenu(prompt, option);
+            int selectedIndex = optionMenu.Run();
+            return selectedIndex;
+        }
     }
 }
