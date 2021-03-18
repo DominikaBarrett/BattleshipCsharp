@@ -7,14 +7,15 @@ namespace BattleshipGame.Game
 
     {
         private List<(int, int)> UsedCoordinates = new List<(int, int)>();
-
+        
 
         protected override (int, int) GetPlayerCoordinates()
         {
+            Random random = new Random();
             while (true)
             {
-                int x = new Random().Next(0, BoardSize);
-                int y = new Random().Next(0, BoardSize);
+                int x = random.Next(0, BoardSize);
+                int y = random.Next(0, BoardSize);
 
                 if (!UsedCoordinates.Contains((x, y)))
                 {
