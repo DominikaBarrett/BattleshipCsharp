@@ -66,21 +66,24 @@ namespace BattleshipGame.Game
         protected abstract (int, int) GetPlayerCoordinates();
 
 
-        public bool CheckIfIsAlive(List<Ship> ships)
+        public bool CheckIfIsAlive()
         {
-            return !ships.TrueForAll(AllShipsSunk);
+            AllShipsSunk(ListOfShips);
+            return IsAlive;
         }
 
 
-        private bool AllShipsSunk(Ship ship)
+        private void AllShipsSunk(List<Ship> ships)
         {
-            foreach (var field in ship.fields)
+            foreach (var ship in ships)
             {
-                if (field.squareStatus != SquareStatus.SUNK)
-                    return false;
+                foreach (var field in ship.fields)
+                {
+                    if (field.squareStatus != SquareStatus.SUNK)
+                        return;
+                }
             }
-
-            return true;
+            IsAlive = false;
         }
     }
 }

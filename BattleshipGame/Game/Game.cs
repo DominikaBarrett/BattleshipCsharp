@@ -39,7 +39,7 @@ namespace BattleshipGame.Game
 
             // loop for making shots until one of players is dead. Making moves is alternately - one move
             // for player1, one move for player 2
-            while (player1.CheckIfIsAlive(player1.ListOfShips) & player2.CheckIfIsAlive(player2.ListOfShips))
+            while (player1.CheckIfIsAlive() & player2.CheckIfIsAlive())
             {
                 // Clear();
                 currentPLayer = turnCounter % 2 == 0 ? player1 : player2;
