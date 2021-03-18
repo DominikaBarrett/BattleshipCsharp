@@ -93,7 +93,7 @@ namespace BattleshipGame.Game
                 var name = Input.GetNickname();
 
                 var prompt = $"Choose type of player {name}";
-                string[] option = {"Human", "Computer easy"};
+                string[] option = {"Human", "Computer easy", "Computer normal"};
                 var index = Input.CreateMenu(prompt, option);
                 
                 switch (index)
@@ -109,6 +109,12 @@ namespace BattleshipGame.Game
                         computerEasy.CreatePlayer(name, BoardSize);
                         new BoardFactory(computerEasy).RandomPlacement();
                         ListOfPlayers.Add(computerEasy);
+                        break;
+                    case 2:
+                        ComputerNormal computerNormal = new ComputerNormal();
+                        computerNormal.CreatePlayer(name, BoardSize);
+                        new BoardFactory(computerNormal).RandomPlacement();
+                        ListOfPlayers.Add(computerNormal);
                         break;
                 }
             }

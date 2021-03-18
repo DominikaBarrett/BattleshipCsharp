@@ -6,10 +6,15 @@ namespace BattleshipGame.Game
     public class ComputerEasy : Player
 
     {
-        private List<(int, int)> UsedCoordinates = new List<(int, int)>();
+        protected List<(int, int)> UsedCoordinates = new List<(int, int)>();
         
 
         protected override (int, int) GetPlayerCoordinates()
+        {
+            return GetRandomCoordinates();
+        }
+        
+        protected (int, int) GetRandomCoordinates()
         {
             Random random = new Random();
             while (true)
