@@ -44,9 +44,8 @@ namespace BattleshipGame.Game
                 foreach (var field in fields)
                 {
                     field.squareStatus = SquareStatus.SUNK;
-                    Display.Sunk();
-                    
                 }
+                Display.Sunk();
             }
         }
 
